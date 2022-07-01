@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Response
-public struct Response: Codable {
+public struct NFTResponse: Codable {
   public let ownedNFTs: [OwnedNFT]
   public let totalCount: Int
   public let blockHash: String

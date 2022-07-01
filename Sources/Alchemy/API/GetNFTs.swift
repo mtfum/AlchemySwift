@@ -7,27 +7,23 @@
 
 import Foundation
 
-public struct GetNFTs: RequestType {
+struct GetNFTs: RequestType {
 
-  public struct Response: Codable {
-    public let ownedNFTs: [OwnedNFT]
-    public let totalCount: Int
-    public let blockHash: String
+  typealias Response = NFTResponse
 
-    enum CodingKeys: String, CodingKey {
-      case ownedNFTs = "ownedNfts"
-      case totalCount
-      case blockHash
-    }
-  }
+  var path: String { "nft/v2/demo/getNFTs/" }
+  var method: HTTPMethod { .get }
+  var queryItems: [URLQueryItem]
 
-  public var path: String { "nft/v2/demo/getNFTs/" }
-  public var method: HTTPMethod { .get }
-  public var queryItems: [URLQueryItem]
-
-  public init(wallet: String) {
-    self.queryItems = [
+  init(wallet: String) {
+    queryItems = [
       .init(name: "owner", value: wallet)
     ]
+  }
+}
+
+extension AlchemyClient {
+  public func getNFTs(wallet: String) async throws -> NFTResponse {
+    try await request(GetNFTs(wallet: wallet))
   }
 }

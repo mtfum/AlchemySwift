@@ -1,6 +1,6 @@
 import Foundation
 
-public class Alchemy {
+public class AlchemyClient {
 
   private let apiKey: String
   private let session: URLSession
