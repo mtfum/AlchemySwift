@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "Alchemy.swift",
+  name: "AlchemySwift",
   platforms: [
     .iOS(.v15),
     .macOS(.v12),
