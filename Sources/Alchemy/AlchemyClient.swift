@@ -6,7 +6,7 @@ public class AlchemyClient {
   private let session: URLSession
   private let decoder: JSONDecoder
 
-  public init(config: Config, session: URLSession =  URLSession.shared, decoder: JSONDecoder = AlchemyClient.decoder) {
+  public init(config: Config, session: URLSession = URLSession.shared, decoder: JSONDecoder = AlchemyClient.decoder) {
     self.config = config
     self.session = session
     self.decoder = decoder
@@ -15,7 +15,6 @@ public class AlchemyClient {
   func request<R: RequestType>(_ api: R) async throws -> R.Response {
     let urlRequest = api.build(with: config)
     let (data, _) = try await session.data(for: urlRequest)
-    print(String(data: data, encoding: .utf8)!)
     return try decoder.decode(R.Response.self, from: data)
   }
 }

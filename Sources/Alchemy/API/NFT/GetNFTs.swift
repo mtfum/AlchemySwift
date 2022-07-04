@@ -21,6 +21,7 @@ struct GetNFTs: RequestType {
 }
 
 extension AlchemyClient {
+  /// https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/getnfts
   public func getNFTs(wallet: String) async throws -> NFTResponse {
     try await request(GetNFTs(wallet: wallet))
   }
