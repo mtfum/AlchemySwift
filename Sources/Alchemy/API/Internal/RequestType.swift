@@ -7,19 +7,17 @@
 
 import Foundation
 
-public protocol RequestType {
-  var baseURL: URL { get }
+protocol RequestType {
+  associatedtype Response: Decodable
+  var apiType: AlchemyAPIType { get }
   var path: String { get }
   var method: HTTPMethod { get }
   var queryItems: [URLQueryItem] { get }
   var httpBody: Data? { get }
   var headerFields: [String: String] { get }
-  associatedtype Response: Decodable
 }
 
-public extension RequestType {
-  var baseURL: URL { URL(string: "https://eth-mainnet.alchemyapi.io/")! }
-
+extension RequestType {
   var queryItems: [URLQueryItem] { [] }
   var httpBody: Data? { nil }
 
@@ -31,17 +29,19 @@ public extension RequestType {
 }
 
 extension RequestType {
-  func build(with key: String) -> URLRequest {
-    let url = baseURL.appendingPathComponent(path)
+  func build(with config: Config) -> URLRequest {
+    let url = URLBuilder(type: apiType)
+      .build(network: config.network, apiKey: config.apiKey)
+      .appendingPathComponent(path)
+
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
     urlComponents.queryItems = queryItems
-    var request = URLRequest(url: urlComponents.url!)
 
-    var headerFields = self.headerFields
-    headerFields["X-API-KEY"] = key
+    var request = URLRequest(url: urlComponents.url!)
     request.allHTTPHeaderFields = headerFields
     request.httpMethod = method.rawValue
     request.httpBody = httpBody
+
     return request
   }
 }

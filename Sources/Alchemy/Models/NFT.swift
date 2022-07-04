@@ -7,19 +7,18 @@
 
 import Foundation
 
-// MARK: - OwnedNft
-public struct OwnedNFT: Codable {
+public struct NFT: Codable {
   public let contract: Contract
   public let id: ID
-  public let title, ownedNftDescription: String
+  public let title: String
+  public let description: String
   public let tokenURI: TokenURI
   public let media: [TokenURI]
   public let metadata: Metadata
-  public let timeLastUpdated: String
+  public let timeLastUpdated: Date
 
   enum CodingKeys: String, CodingKey {
-    case contract, id, title
-    case ownedNftDescription = "description"
+    case contract, id, title, description
     case tokenURI = "tokenUri"
     case media
     case metadata

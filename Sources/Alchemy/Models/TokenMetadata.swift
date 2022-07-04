@@ -9,5 +9,5 @@ import Foundation
 
 // MARK: - TokenMetadata
 public struct TokenMetadata: Codable {
-  public let tokenType: String
+  public let tokenType: NFTTokenType
 }

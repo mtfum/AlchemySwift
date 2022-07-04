@@ -8,17 +8,15 @@
 import Foundation
 
 struct GetNFTs: RequestType {
-
   typealias Response = NFTResponse
 
-  var path: String { "nft/v2/demo/getNFTs/" }
-  var method: HTTPMethod { .get }
+  var apiType: AlchemyAPIType { .nft }
+  var path: String { "getNFTs" }
+  var method: HTTPMethod { .GET }
   var queryItems: [URLQueryItem]
 
   init(wallet: String) {
-    queryItems = [
-      .init(name: "owner", value: wallet)
-    ]
+    queryItems = [.init(name: "owner", value: wallet)]
   }
 }
 

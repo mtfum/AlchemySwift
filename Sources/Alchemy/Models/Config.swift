@@ -12,11 +12,10 @@ public struct Config {
   public let network: Network
   public let maxRetries: Int?
 
-  public init(apiKey: String, network: Network, maxRetries: Int?) {
+  public init(apiKey: String, network: Network, maxRetries: Int? = nil) {
     self.apiKey = apiKey
     self.network = network
     self.maxRetries = maxRetries
   }
-
 }
 
