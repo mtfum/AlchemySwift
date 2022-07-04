@@ -16,11 +16,15 @@ let package = Package(
       name: "Alchemy",
       targets: ["Alchemy"]),
   ],
-  dependencies: [],
+  dependencies: [
+    .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.6.5")
+  ],
   targets: [
     .target(
       name: "Alchemy",
-      dependencies: []),
+      dependencies: [
+        .product(name: "AnyCodable", package: "AnyCodable")
+      ]),
     .testTarget(
       name: "AlchemyTests",
       dependencies: ["Alchemy"]),
