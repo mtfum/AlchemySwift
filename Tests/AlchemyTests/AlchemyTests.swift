@@ -24,4 +24,14 @@ final class AlchemyTests: XCTestCase {
       XCTFail(String(describing: error))
     }
   }
+
+  func testGetContractMetadata() async throws {
+    do {
+      let address = "0x61fce80d72363b731425c3a2a46a1a5fed9814b2"
+      let contractMetadata = try await client.getContractMetadata(contractAddress: address)
+      XCTAssertTrue(contractMetadata.name == "CyborgMercenariesCm")
+    } catch {
+      XCTFail(String(describing: error))
+    }
+  }
 }

@@ -31,15 +31,3 @@ struct GetNFTMetadata: RequestType {
     }
   }
 }
-
-extension AlchemyClient {
-  /// https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/getnftmetadata
-  ///
-  public func getNFTMetadata(
-    contractAddress: String,
-    tokenId: Int,
-    tokenType: NFTTokenType? = nil
-  ) async throws -> NFT {
-    try await request(GetNFTMetadata(contractAddress: contractAddress, tokenId: tokenId, tokenType: tokenType))
-  }
-}
