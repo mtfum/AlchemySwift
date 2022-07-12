@@ -12,14 +12,14 @@ public struct Metadata: Codable {
   public let name: String?
   public let description: String?
   public let image: String?
-  public let externalURL: String?
+  public let externalUrl: String?
   public let attributes: [Attribute]?
 
   enum CodingKeys: String, CodingKey {
     case name
     case description
     case image
-    case externalURL = "external_url"
+    case externalUrl = "external_url"
     case attributes
   }
 }

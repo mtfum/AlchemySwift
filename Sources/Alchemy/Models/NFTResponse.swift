@@ -9,13 +9,7 @@ import Foundation
 
 // MARK: - Response
 public struct NFTResponse: Codable {
-  public let ownedNFTs: [NFT]
+  public let ownedNfts: [NFT]
   public let totalCount: Int
   public let blockHash: String
-
-  enum CodingKeys: String, CodingKey {
-    case ownedNFTs = "ownedNfts"
-    case totalCount
-    case blockHash
-  }
 }

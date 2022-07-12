@@ -1,5 +1,5 @@
 //
-//  GetContractMetadata.swift
+//  GetOwnersForCollection.swift
 //  
 //
 //  Created by Fumiya Yamanaka on 2022/07/11.
@@ -7,16 +7,13 @@
 
 import Foundation
 
-public struct GetContractMetadataResponse: Decodable {
-  let address: String
-  let contractMetadata: ContractMetadata
-}
-
-struct GetContractMetadata: RequestType {
-  typealias Response = GetContractMetadataResponse
+struct GetOwnersForCollection: RequestType {
+  struct Response: Decodable {
+    let ownerAddresses: [String]
+  }
 
   var apiType: AlchemyAPIType { .nft }
-  var path: String { "getContractMetadata" }
+  var path: String { "getOwnersForCollection" }
   var method: HTTPMethod { .GET }
   let queryItems: [URLQueryItem]
 

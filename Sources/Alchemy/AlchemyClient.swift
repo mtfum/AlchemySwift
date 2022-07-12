@@ -15,12 +15,15 @@ public class AlchemyClient {
   func request<R: RequestType>(_ api: R) async throws -> R.Response {
     let urlRequest = api.build(with: config)
     let (data, _) = try await session.data(for: urlRequest)
+#if DEBUG
+    dump(String(data: data, encoding: .utf8))
+#endif
     return try decoder.decode(R.Response.self, from: data)
   }
 }
 
 extension AlchemyClient {
-
+  
   public static let decoder: JSONDecoder = {
     let decoder = JSONDecoder()
     let dateFormatter = DateFormatter()
